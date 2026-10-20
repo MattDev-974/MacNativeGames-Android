@@ -5,7 +5,8 @@
 This is an independent, non-commercial port of
 [MacNativeGames](https://github.com/ly05010419/MacNativeGames) to Android.
 `runtime/gate.S`, the module loader, the relocation pass and the NVN seam are
-ported from that project (MIT). The graphics backend is not: it is written for
+ported from that project, which is MIT licensed
+(Copyright (c) 2026 MacNativeGames contributors). The graphics backend is not: it is written for
 Vulkan instead of Metal.
 
 Not affiliated with, endorsed by, or sponsored by Nintendo.

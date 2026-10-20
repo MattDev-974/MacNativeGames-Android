@@ -2,11 +2,6 @@ MIT License
 
 Copyright (c) 2026 MacNativeGames Android port contributors
 
-This project is a derivative work of MacNativeGames
-(https://github.com/ly05010419/MacNativeGames),
-Copyright (c) 2026 MacNativeGames contributors, MIT licensed.
-Its loader, gate and NVN seam are ports of that project's C sources.
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
