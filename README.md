@@ -110,3 +110,28 @@ tools/build_apk.py  cmake + aapt2 + zipalign + apksigner
 tools/embed_spirv.py
 docs/               analyse et plan de portage
 ```
+
+## Matériel de test
+
+Deux appareils, deux familles de GPU. Les deux comptent : ce qui casse sur l'une
+n'apparaît pas sur l'autre.
+
+| Appareil | GPU | Ce qui y a été établi |
+|---|---|---|
+| Redmi 23090RA98G | **Mali-G610 MC4**, Vulkan 1.3.219, Android 16 | les cinq défauts de rendu (compteur `vkGetSwapchainImagesKHR`, `codeSize` en octets, surface 1×1, swapchain jetable, sémaphore d'acquisition) ; triangle à ~120 fps ; `TPIDRRO_EL0` non inscriptible à EL0 |
+| Xiaomi Pad 25099RP13G | **Adreno 810**, Vulkan 1.3.284, 12 Go | `textureCompressionBC=1` (BC1 et BC7 échantillonnables) ; `VK_ANDROID_external_memory_android_hardware_buffer` ; `VK_EXT_external_memory_host` absente |
+
+Les essais Mali ne sont pas un détour : c'est là qu'ont été trouvés les défauts
+que les pilotes plus tolérants masquent, et le contournement du sémaphore
+d'acquisition y reste nécessaire. Un backend écrit sur Adreno seul arriverait
+sur Mali avec cinq bugs non détectés.
+
+## Origine
+
+Ce portage a été réalisé avec **DeepSeek** (DeepSeek Harness), en binôme avec
+l'auteur du dépôt : lecture du projet amont, écriture du runtime Android,
+mise au point sur appareil réel, et rédaction de la documentation.
+
+Le projet amont, [MacNativeGames](https://github.com/ly05010419/MacNativeGames),
+est l'œuvre de ses contributeurs ; ce dépôt n'en reprend que les sources
+portables, sous licence MIT (voir [NOTICE.md](NOTICE.md)).
