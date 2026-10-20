@@ -151,7 +151,7 @@ Bonne nouvelle : contrairement à iOS, Android **autorise la génération de cod
 
 1. **Pas de contrainte de paquet signé** : la RAM n'est pas plafonnée à 4 Go
    comme sur iPhone (où le jeu se fait tuer au bout de ~8 minutes). Un appareil
-   à 12 Go laisse de la marge.
+   à 12 Go laisse de la marge (le téléphone de test en a 12, la tablette 8).
 2. **JIT autorisé** : traduction de shaders à la volée, pas de graine à figer.
 3. **SPIR-V direct** : un étage entier (SPIRV-Cross) disparaît.
 4. **Décodage vidéo matériel** : `AMediaCodec` décode le VP9 des cinématiques

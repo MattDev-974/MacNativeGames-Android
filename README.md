@@ -118,8 +118,13 @@ n'apparaît pas sur l'autre.
 
 | Appareil | GPU | Ce qui y a été établi |
 |---|---|---|
-| Redmi 23090RA98G | **Mali-G610 MC4**, Vulkan 1.3.219, Android 16 | les cinq défauts de rendu (compteur `vkGetSwapchainImagesKHR`, `codeSize` en octets, surface 1×1, swapchain jetable, sémaphore d'acquisition) ; triangle à ~120 fps ; `TPIDRRO_EL0` non inscriptible à EL0 |
-| Xiaomi Pad 25099RP13G | **Adreno 810**, Vulkan 1.3.284, 12 Go | `textureCompressionBC=1` (BC1 et BC7 échantillonnables) ; `VK_ANDROID_external_memory_android_hardware_buffer` ; `VK_EXT_external_memory_host` absente |
+| Redmi 23090RA98G | **Mali-G610 MC4**, Vulkan 1.3.219, **12 Go de RAM** | les cinq défauts de rendu (compteur `vkGetSwapchainImagesKHR`, `codeSize` en octets, surface 1×1, swapchain jetable, sémaphore d'acquisition) ; triangle à ~120 fps ; `TPIDRRO_EL0` non inscriptible à EL0 |
+| Xiaomi Pad 25099RP13G | **Adreno 810**, Vulkan 1.3.284, **8 Go de RAM** | `textureCompressionBC=1` (BC1 et BC7 échantillonnables) ; `VK_ANDROID_external_memory_android_hardware_buffer` ; `VK_EXT_external_memory_host` absente |
+
+À noter : les deux heaps Vulkan relevés sur la tablette (8,01 Go + 4,29 Go
+`device-local`) sont de l'**espace d'adressage GPU**, pas de la mémoire
+physique — elle a 8 Go de RAM, le téléphone 12. Le meilleur GPU a donc le moins
+de mémoire, ce qui compte pour un jeu qui visait ~4 Go sur iPhone.
 
 Les essais Mali ne sont pas un détour : c'est là qu'ont été trouvés les défauts
 que les pilotes plus tolérants masquent, et le contournement du sémaphore
