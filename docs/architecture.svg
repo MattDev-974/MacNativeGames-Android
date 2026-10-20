@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="560" fill="#0f172a"/>
+
+  <text x="450" y="34" fill="#e2e8f0" font-size="17" font-weight="600" text-anchor="middle">MacNativeGames sur Android — le code du jeu tourne tel quel</text>
+
+  <!-- guest -->
+  <rect x="250" y="60" width="400" height="68" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="450" y="88" fill="#7dd3fc" font-size="14" font-weight="600" text-anchor="middle">Code du jeu — ARM64 (main, sdk, subsdk0)</text>
+  <text x="450" y="110" fill="#94a3b8" font-size="12" text-anchor="middle">non émulé : les instructions sont exécutées par le CPU</text>
+
+  <!-- patch -->
+  <rect x="250" y="146" width="400" height="46" rx="8" fill="#172554" stroke="#3b82f6" stroke-dasharray="5 3"/>
+  <text x="450" y="174" fill="#93c5fd" font-size="12.5" text-anchor="middle">réécriture statique : svc · x18 · tpidrro_el0 · cntpct  →  bl gate</text>
+  <path d="M450 128 L450 146" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- gate -->
+  <rect x="250" y="210" width="400" height="58" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="450" y="235" fill="#c4b5fd" font-size="14" font-weight="600" text-anchor="middle">Gate HLE — gate.S</text>
+  <text x="450" y="255" fill="#94a3b8" font-size="11.5" text-anchor="middle">sauve x0–x30 / q0–q31 + nzcv, bascule sur pile hôte, dispatch C</text>
+  <path d="M450 192 L450 210" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- host layer -->
+  <rect x="60" y="292" width="360" height="96" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="240" y="316" fill="#fcd34d" font-size="13.5" font-weight="600" text-anchor="middle">Services Horizon (runtime/)</text>
+  <text x="240" y="338" fill="#cbd5e1" font-size="11.5" text-anchor="middle">fichiers · threads · mémoire · temps</text>
+  <text x="240" y="356" fill="#cbd5e1" font-size="11.5" text-anchor="middle">compte · manettes · clavier · audio</text>
+  <text x="240" y="374" fill="#94a3b8" font-size="11" text-anchor="middle">CoreFoundation → libc · CoreAudio → AAudio</text>
+
+  <rect x="480" y="292" width="360" height="96" rx="10" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+  <text x="660" y="316" fill="#6ee7b7" font-size="13.5" font-weight="600" text-anchor="middle">NVN HLE (gfx/nvn)</text>
+  <text x="660" y="338" fill="#cbd5e1" font-size="11.5" text-anchor="middle">575 points d'entrée · rejeu des command buffers</text>
+  <text x="660" y="356" fill="#cbd5e1" font-size="11.5" text-anchor="middle">pools mémoire · textures · pipelines</text>
+  <text x="660" y="374" fill="#94a3b8" font-size="11" text-anchor="middle">nvn_mtl.m (Metal 4) → nvn_vk.c (Vulkan)</text>
+
+  <path d="M380 268 L300 292" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M520 268 L600 292" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- platform -->
+  <rect x="60" y="424" width="780" height="72" rx="10" fill="#0b1220" stroke="#475569" stroke-width="1.5"/>
+  <text x="450" y="448" fill="#e2e8f0" font-size="13" font-weight="600" text-anchor="middle">Plateforme Android</text>
+  <text x="450" y="470" fill="#94a3b8" font-size="11.5" text-anchor="middle">mmap/ELF · pthread · sigaction · ANativeWindow + VkSwapchainKHR · AAudio · AInputEvent · AMediaCodec</text>
+  <text x="450" y="486" fill="#64748b" font-size="10.5" text-anchor="middle">(à la place de : Mach-O · mach_vm · Core Audio · CAMetalLayer · GameController.framework · AVFoundation)</text>
+
+  <path d="M240 388 L240 424" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M660 388 L660 424" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- shader path note -->
+  <rect x="60" y="512" width="780" height="34" rx="8" fill="#052e16" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="534" fill="#86efac" font-size="11.5" text-anchor="middle">Shaders : Maxwell → SPIR-V (traducteur Ryujinx) → <tspan font-weight="700">Vulkan directement</tspan> — SPIRV-Cross et MSL disparaissent du chemin</text>
+</svg>

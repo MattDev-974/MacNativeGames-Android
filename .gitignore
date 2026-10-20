@@ -1,0 +1,29 @@
+# Build artifacts
+build/
+out/
+*.apk
+*.idsig
+debug.keystore
+
+# Anything derived from the player's own game file.  These are produced by
+# tools/import_totk.py into a directory *outside* this repository; these
+# patterns only guard against someone building in-tree by mistake.
+import/
+TOTK_android/
+runtime_tables.h
+*.patched.bin
+*.gates.tsv
+*.fixups.tsv
+*.sites.tsv
+*.bfttf
+*.xci
+*.nsp
+*.nsz
+*.nca
+prod.keys
+title.keys
+romfs.bin
+.import-venv/
+
+# Test build outputs
+tests/host/gen/
